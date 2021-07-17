@@ -71,11 +71,12 @@ class Huffman(object):
         h = []
         for key, value in self.freq_dict.items():
             heapq.heappush(h, Node(value, key))
+        # if there is only one unique char
         if len(h) == 1:
             self.huffman_root = Node(h[0].freq)
             self.huffman_root.left = h[0]
         else:
-            # call the function to generate the Huffman Tree
+            # otherwise, call the function to generate the Huffman Tree
             self.huffman_root = self._huffman_tree(h)
         # use the tree to generate binary code for each character
         code = ''
@@ -175,6 +176,6 @@ if __name__ == "__main__":
                                             decoded_data)))
     print("The content of the encoded data is: {}\n".format(decoded_data))
 
-    print('Test Case 3')
-    print(f'String to be encoded: {test_case_3}')
+    print('Test Case 3 - Expected results: ValueError Raised')
+    print(f'The content of the data is: empty data')
     encoded_data = huffman.encoding(test_case_3)

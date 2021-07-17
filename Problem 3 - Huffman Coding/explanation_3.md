@@ -18,9 +18,13 @@ Assuming we are dealing with limited characters in the ASCII table.
 * For encoding, it is O(n) where n is the number of all characters in the string.
 * For decoding, it is O(n) where n is the number of all 0/1 in the binary code string.
 
-The space complexity of a doubly linked node of [key, value] is 4 + 1 + 1 = 6. The LRU_cache class = 6n + 1 + 1 + 4 + 4 = 6n + 10. The space complexity of the LRU_cache class is O(n).  
+###### Space complexity:
 
-**Space Complexity:** O(n)
+* The space complexity of a Node object is O(4 + 1 + 1 + 1) = O(7). A Huffman Tree has 2k - 1 nodes where k is the number of unique characters (leaf nodes). Therefore, the space complexity of a Huffman Tree is O(7(2k-1)).
+* There are two dictionaries in the Huffman class, each has a space complexity of O((1 + 4)k) or O(5k) where k is the number of unique characters.
+* The min-heap contains nodes which are already counted in the Huffman Tree.
+
+Therefore, the total space complexity of the data structure is O(14k-7 + 5k) or O(k) where k is the number of unique characters.
 
 Note: In calculating space complexity, the following memory value is assumed:
   * pointer - 1 byte
