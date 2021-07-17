@@ -1,7 +1,7 @@
 ### Problem 3 - Huffman Coding
 
 In my solution, linked list with binary tree, hashmap(python dictionary), and min-heap are used. Min-heap is implemented using the python heapq library. The Huffman tree is implemented using linked list which store two information items: character and frequency of character.
-###### Time complexity analysis of the process by steps:
+#### Time complexity analysis of the process by steps:
 1. Store the frequency of each character in a dictionary: traversing all character one time, O(n)
 2. Forming the Huffman Tree:
   * Whenever pushing or popping items from the min-heap, the heap list needs to be heapified(O(n)). Time complexity for these operations is O(n)*k where k is the number of push/pop needed in the process. However, the number of push/pop,k, and the number of unique character, n, are both limited. The overall time complexity can be viewed as constant, O(1) for small number of characters and O(n) for large number of unique characters.
@@ -13,12 +13,12 @@ In my solution, linked list with binary tree, hashmap(python dictionary), and mi
 
 Therefore:
 
-**Summary of Time Complexity:**  
+Summary of Time Complexity:  
 Assuming we are dealing with limited characters in the ASCII table.
 * For encoding, it is O(n) where n is the number of all characters in the string.
 * For decoding, it is O(n) where n is the number of all 0/1 in the binary code string.
 
-###### Space complexity:
+#### Space complexity:
 
 * The space complexity of a Node object is O(4 + 1 + 1 + 1) = O(7). A Huffman Tree has 2k - 1 nodes where k is the number of unique characters (leaf nodes). Therefore, the space complexity of a Huffman Tree is O(7(2k-1)).
 * There are two dictionaries in the Huffman class, each has a space complexity of O((1 + 4)k) or O(5k) where k is the number of unique characters.
