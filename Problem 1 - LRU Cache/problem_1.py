@@ -16,9 +16,12 @@ class LRU_Cache(object):
         self.head = None
         self.last = None
         self.num_entries = 0
-        self.capacity = capacity
+        if capacity > 0:
+            self.capacity = capacity
+        else:
+            self.capacity = 10
 
-    def get(self, key):
+    def get(self, key=None):
         # Retrieve item from provided key. Return -1 if nonexistent.
         if key in self.hash_map:
             # If cache hit happens at the head, move the second item to the head,
@@ -44,11 +47,14 @@ class LRU_Cache(object):
         else:
             return -1
 
-    def set(self, key, value):
+    def set(self, key=None, value=None):
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
 
+        # null input
+        if key is None or value is None:
+            print('Null Input')
         # initial entry
-        if self.num_entries == 0:
+        elif self.num_entries == 0:
             self.hash_map[key] = Node([key, value])
             self.head = self.hash_map[key]
             self.last = self.hash_map[key]
@@ -89,7 +95,6 @@ class LRU_Cache(object):
         return f'{output}'
 
 
-
 our_cache = LRU_Cache(5)
 
 # Test case 1 - 0 data entry
@@ -117,3 +122,19 @@ our_cache.set(8, 8)
 print(our_cache.get(4))     # returns -1 because the cache reached it's capacity and 4 was the least recently used entry
 print(our_cache.get(1))     # returns -1 because the cache reached it's capacity and 1 was the least recently used entry
 print(our_cache.get(2))     # returns 2
+
+# Test case 4 - getting the same value over and over again
+print('\nGet 2 six times:')
+print(our_cache.get(2))
+print(our_cache.get(2))
+print(our_cache.get(2))
+print(our_cache.get(2))
+print(our_cache.get(2))
+print(our_cache.get(2))
+
+# Test case 5 - null and negative capacity
+# when capacity of less than 0 is specified, the capacity is automatically set to 10
+cache_1 = LRU_Cache(0)
+cache_2 = LRU_Cache(-1)
+print(f'\nThe capacity of cache_1 is {cache_1.capacity}')  # return 10
+print(f'The capacity of cache_2 is {cache_2.capacity}')  # return 10

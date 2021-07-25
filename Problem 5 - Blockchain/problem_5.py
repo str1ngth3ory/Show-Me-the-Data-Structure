@@ -29,7 +29,7 @@ class Blockchain(object):
     def add_block(self, data):
 
         if data is None or data == '':
-            raise ValueError('Empty data entered')
+            return
 
         dt_ts = datetime.fromtimestamp(time.time(), tz=timezone.utc)
         if self.head is None:
@@ -72,6 +72,11 @@ for i in range(len(data_list)):
     print(f'{data_list[i]}')
     print(f'{hash_list[i]}')
 
-print('\n\nTest Case 3 - empty data')
-# raise ValueError
-b.add_block(None)
+print('\n\nTest Case 3 - create an empty block')
+# return an empty blockchain because no block is added to the blockchain
+a = Blockchain()
+a.add_block(None)
+data_list, hash_list = a.to_list()
+for i in range(len(data_list)):
+    print(f'{data_list[i]}')
+    print(f'{hash_list[i]}')

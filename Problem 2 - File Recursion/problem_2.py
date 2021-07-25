@@ -39,8 +39,8 @@ def find_files(suffix, path):
     return list_files
 
 
-# # Test case 1 - null folder
-test_case_1 = ['.c', './test_case_1']
+# # Test case 1 - invalid file path
+test_case_1 = ['.c', './invalid_filepath']
 print(find_files(*test_case_1))  # return None
 
 # Test case 2 - empty folder
@@ -50,3 +50,7 @@ print(find_files(*test_case_2))  # return empty list
 # Test case 3 - typical folder (the folder provided in the problem statement)
 test_case_3 = ['.c', './test_case']
 print(find_files(*test_case_3))  # return the four files that end with '.c'
+
+# Test case 4 - file not found
+test_case_3 = ['.exe', './test_case']
+print(find_files(*test_case_3))  # return empty list

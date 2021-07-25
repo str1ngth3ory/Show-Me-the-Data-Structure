@@ -19,6 +19,7 @@ class Group(object):
     def get_name(self):
         return self.name
 
+
 def is_user_in_group(user, group, output=False):
     """
     Return True if user is in the group, False otherwise.
@@ -92,3 +93,8 @@ print('Is user_2 in group_1?')
 print(is_user_in_group(user_2, group_1))  # return True
 print('Is user_7 in super_group?')
 print(is_user_in_group(user_7, super_group))  # return True
+
+# Test Case 4 - empty group
+empty_group = Group('empty_group')
+print('Is user in the empty_group?')
+print(is_user_in_group('user', empty_group))

@@ -15,7 +15,7 @@ Total = m + 97 bytes
 
 The blockchain class just adds multiple of blocks and two more pointers. Therefore,
 
-**Space Complexity:** the space complexity of block chain is O(n(m+97) + 2) or O(n x m) where n is number of blocks and m is the length of the data string.
+**Space Complexity:** the space complexity of block chain is O(n(m+97) + 2) or O(n x m) where n is number of blocks and m is the length of the data string. If we ignore the length of each datablock (limited data), then the time complexity is O(n) where n is the number of blocks.
 
 Note: In calculating space complexity, the following memory value is assumed:
   * pointer - 1 byte

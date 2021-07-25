@@ -50,23 +50,22 @@ class LinkedList:
 def union(llist_1, llist_2):
     # create a copy of linked list 1 - union list
     ulist = LinkedList()
+    u_set = set()
+
+    # add values from both lists to the set and exclude duplicates
     node = llist_1.head
     while node:
-        ulist.append(node.value)
+        u_set.add(node.value)
         node = node.next
 
-    # check every node in list 2 against every node in the list 1
-    # if list 2 node not in list 1, append it to the union list
-    node_2 = llist_2.head
-    while node_2:
-        node_1 = llist_1.head
-        while node_1:
-            if node_2.value == node_1.value:
-                break
-            node_1 = node_1.next
-        if node_1 is None:
-            ulist.append(node_2.value)
-        node_2 = node_2.next
+    node = llist_2.head
+    while node:
+        u_set.add(node.value)
+        node = node.next
+
+    # convert the set into a linked list and return the linked list
+    for value in u_set:
+        ulist.append(value)
 
     if ulist.head:
         return ulist
@@ -75,20 +74,26 @@ def union(llist_1, llist_2):
 
 
 def intersection(llist_1, llist_2):
-    # create a copy of linked list 1 - intersection list
+    # create a copy of linked list 1 - union list
     ilist = LinkedList()
+    set_1 = set()
+    i_set = set()
 
-    # check every node in list 2 against every node in the list 1
-    # if list 2 node is in list 1, append it to the intersection list
-    node_2 = llist_2.head
-    while node_2:
-        node_1 = llist_1.head
-        while node_1:
-            if node_2.value == node_1.value:
-                ilist.append(node_2.value)
-                break
-            node_1 = node_1.next
-        node_2 = node_2.next
+    # add values from both lists to the set and exclude duplicates
+    node = llist_1.head
+    while node:
+        set_1.add(node.value)
+        node = node.next
+
+    node = llist_2.head
+    while node:
+        if node.value in set_1:
+            i_set.add(node.value)
+        node = node.next
+
+    # convert the set into a linked list and return the linked list
+    for value in i_set:
+        ilist.append(value)
 
     if ilist.head:
         return ilist
@@ -154,3 +159,22 @@ for i in element_2:
 print('\nTest Case 3')
 print('Union:', union(linked_list_5, linked_list_6))
 print('Intersection:', intersection(linked_list_5, linked_list_6))
+
+# Test case 4 - One set empty
+# Return the non-empty list for union and None for intersection
+
+linked_list_7 = LinkedList()
+linked_list_8 = LinkedList()
+
+element_1 = [1, 3, 6, 23, 35]
+element_2 = []
+
+for i in element_1:
+    linked_list_7.append(i)
+
+for i in element_2:
+    linked_list_8.append(i)
+
+print('\nTest Case 3')
+print('Union:', union(linked_list_7, linked_list_8))
+print('Intersection:', intersection(linked_list_7, linked_list_8))
